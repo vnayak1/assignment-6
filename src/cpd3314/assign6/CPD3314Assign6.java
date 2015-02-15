@@ -27,14 +27,14 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * @author <ENTER YOUR NAME HERE>
+ * @author <vinayak shastri>
  */
 public class CPD3314Assign6 {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO: This is a sandbox. 
 
         /* Modify it and use it to call whatever objects and methods you want.
@@ -45,6 +45,40 @@ public class CPD3314Assign6 {
          * Car class. The automated tests will tell you if you built it correctly.
          *
          */
+        
+           int choice;
+        Scanner in = new Scanner(System.in);
+        CPD3314Assign6 cpd = new CPD3314Assign6();
+        do {
+            System.out.println("Which exercise would you like to run? [2,7,10,11] (0 to Exit)");
+            choice = in.nextInt();
+            switch (choice) {
+                case 0:
+                    System.out.println("Okay, goodbye!");
+                    break;
+                case 2:
+                     
+                     cpd.doExercise2();
+                    break;
+                case 7:
+                    
+                      cpd.doExercise7();
+                    break;
+                case 10:
+                     
+                     cpd.doExercise10();
+                    break;
+                case 11:
+                    cpd.doExercise11();
+                    break;
+                
+                default:
+                    System.out.println("That is not a valid choice.");
+                    break;
+            }
+        } while (choice != 0);
+     
+        
     }
 
     /* Exercise #2 - Car Class
@@ -72,6 +106,27 @@ public class CPD3314Assign6 {
      */
     public void doExercise2() {
         // TODO: Complete the main-class portion of Exercise #2 here
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the year of model:");
+        int ym = s.nextInt();
+        
+        System.out.println("Enter the make:");
+        String mk = s.next();     
+        Car c = new Car(ym,mk);
+        
+      
+        System.out.println("current speed after first Accelerate :"+c.accelerate());
+        System.out.println("current speed after second Accelerate:"+c.accelerate());
+        System.out.println("current speed after third Accelerate:"+c.accelerate());
+        System.out.println("current speed after four Accelerate:"+c.accelerate());
+        System.out.println("current speed after five Accelerate:"+c.accelerate());
+        
+        
+        System.out.println("current speed after first Brake:"+c.brake());
+        System.out.println("current speed after second Brake:"+c.brake());
+        System.out.println("current speed after third Brake:"+c.brake());
+        System.out.println("current speed after four Brake:"+c.brake());
+        System.out.println("current speed after five Brake:"+c.brake());
     }
 
     /* Exercise #7 - Circle Class
@@ -98,6 +153,19 @@ public class CPD3314Assign6 {
      */
     public void doExercise7() {
         // TODO: Complete the main-class portion of Exercise #7 here
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter the radius of circle:");
+        double r = s.nextDouble();
+        
+        Circle c = new Circle(r);
+        System.out.println("Area of circle:" +c.getArea());
+        System.out.println("diameter of circle:"+c.getDiameter());
+        System.out.println("circumference of circle:"+c.getCircumference());
+        
+   
+        
+        
+        
     }
 
     /* Exercise #10 & 11 - SavingsAccount Class
@@ -126,8 +194,8 @@ public class CPD3314Assign6 {
         SavingsAccount sa = new SavingsAccount(annualRate, balance);
         System.out.println("How many months have passed since the account was "
                 + "established?");
-        int months = kb.nextInt();
-        double deposits = 0;
+       int months = kb.nextInt();
+       double deposits = 0;
         double withdrawals = 0;
         for (int i = 1; i <= months; i++) {
             System.out.println("How much was deposited in month " + i + "?");
@@ -137,14 +205,13 @@ public class CPD3314Assign6 {
             double withdrawal = kb.nextDouble();
             sa.withdraw(withdrawal);
             sa.calculateInterest();
-        }
+      }
         System.out.printf("Ending Balance: %.2f\n", sa.getBalance());
         System.out.printf("Total Deposits: %.2f\n", sa.getTotalDeposits());
         System.out.printf("Total Withdrawals: %.2f\n", sa.getTotalWithdrawals());
         System.out.printf("Total Interst: %.2f\n", sa.getTotalInterest());
     }
-
-    public void doExercise11() throws IOException {
+   public void doExercise11() throws IOException {
         File dFile = new File("Deposits.txt");
         Scanner deposits = new Scanner(dFile);
         File wFile = new File("Withdrawals.txt");
@@ -153,7 +220,7 @@ public class CPD3314Assign6 {
         SavingsAccount sa = new SavingsAccount(0.08, 500.00);
 
         while (deposits.hasNext()) {
-            sa.deposit(deposits.nextDouble());
+           sa.deposit(deposits.nextDouble());
         }
         while (withdrawals.hasNext()) {
             sa.withdraw(withdrawals.nextDouble());
@@ -162,4 +229,6 @@ public class CPD3314Assign6 {
         System.out.printf("Ending Balance: %.2f\n", sa.getBalance());
         System.out.printf("Total Interst: %.2f\n", sa.getTotalInterest());
     }
-}
+    
+    
+    }
